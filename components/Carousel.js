@@ -60,7 +60,6 @@ function carousel() {
     image4,
   ]
 
-  
 
   let index = 0
 

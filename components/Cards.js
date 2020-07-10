@@ -52,7 +52,7 @@ export function cardMaker(articleObj) {
     return card
 }
 
-export const articlesURL = "https://lambda-times-backend.herokuapp.com/articles"
+const articlesURL = "https://lambda-times-backend.herokuapp.com/articles"
 
 const cards = document.querySelector(".cards-container")
 const errors = document.querySelector('.errors-container')
