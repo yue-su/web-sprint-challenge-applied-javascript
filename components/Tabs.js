@@ -10,6 +10,8 @@
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
 
+import { articlesURL, cardMaker } from './Cards'
+
 const topicURL = "https://lambda-times-backend.herokuapp.com/topics"
 
 const topics = document.querySelector('.topics')
@@ -22,6 +24,11 @@ axios.get(topicURL)
             tab.className = "tab"
             tab.textContent = `${item}`
             topics.appendChild(tab)
+
+            // tab.addEventListener('click', (event) => {
+                
+            // })
+
         });
      })
     .catch(function (error) { console.log(error) })

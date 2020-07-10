@@ -24,7 +24,7 @@
 const { default: Axios } = require("axios")
 
 
-function cardMaker(articleObj) {
+export function cardMaker(articleObj) {
     const card = document.createElement('div')
     const headline = document.createElement('div')
     const author = document.createElement('div')
@@ -52,9 +52,12 @@ function cardMaker(articleObj) {
     return card
 }
 
-const articlesURL = "https://lambda-times-backend.herokuapp.com/articles"
+export const articlesURL = "https://lambda-times-backend.herokuapp.com/articles"
 
 const cards = document.querySelector(".cards-container")
+const errors = document.querySelector('.errors-container')
+const tab = document.querySelectorAll(".tab")
+
 
 Axios.get(articlesURL)
     .then(function (article) {
@@ -71,4 +74,15 @@ Axios.get(articlesURL)
         // }))
     })
     
-.catch(function(error){console.log(error)})
+    //Stretch 2
+    .catch(function () { 
+        const errorMessage = document.createElement('div')
+        errorMessage.textContent = 'Error 404'
+        errorMessage.style.fontSize ='300%'
+        errors.appendChild(errorMessage)
+     })
+
+//Stretch 3    
+
+
+    
