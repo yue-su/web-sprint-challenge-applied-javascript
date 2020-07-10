@@ -24,3 +24,77 @@
 */
 
 
+function carousel() {
+
+  const carousel =document.createElement('div')
+  const leftButton =document.createElement('div')
+  const image1 =document.createElement('img')
+  const image2 =document.createElement('img')
+  const image3 =document.createElement('img')
+  const image4 = document.createElement('img')
+  const rightButton = document.createElement('div')
+  
+  carousel.className = 'carousel'
+  leftButton.className = 'left-button'
+  rightButton.className = 'right-button'
+
+  leftButton.textContent = '<'
+  rightButton.textContent = '>'
+  image1.setAttribute("src", "./assets/carousel/mountains.jpeg")
+  image1.style.display = 'block'
+  image2.setAttribute("src", "./assets/carousel/computer.jpeg")
+  image3.setAttribute("src", "./assets/carousel/trees.jpeg")
+  image4.setAttribute("src", "./assets/carousel/turntable.jpeg")
+
+  carousel.appendChild(leftButton)
+  carousel.appendChild(image1)
+  carousel.appendChild(image2)
+  carousel.appendChild(image3)
+  carousel.appendChild(image4)
+  carousel.appendChild(rightButton)
+
+  let imgArr = [
+    image1,
+    image2,
+    image3,
+    image4,
+  ]
+
+  
+
+  let index = 0
+
+  rightButton.addEventListener('click', (event) => {
+    if (index < 3) {
+      imgArr[index].style.display = 'none'
+      imgArr[index + 1].style.display = 'block'
+      index++
+    } else if(index === 3) {
+      imgArr[3].style.display = 'none'
+      imgArr[0].style.display = 'block'
+      index = 0
+    }
+    
+  })
+
+  leftButton.addEventListener('click', (event) => {
+    if (index > 0) {
+      imgArr[index].style.display = "none"
+      imgArr[index - 1].style.display = "block"
+      index++
+    } else if ((index === 0)) {
+      imgArr[0].style.display = "none"
+      imgArr[3].style.display = "block"
+      index = 3
+    }
+  })
+
+  return carousel
+  
+  
+  
+}
+
+const carouselContainer = document.querySelector(".carousel-container")
+carouselContainer.appendChild(carousel())
+
