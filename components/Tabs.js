@@ -16,7 +16,7 @@ const topics = document.querySelector('.topics')
 
 axios.get(topicURL)
     .then(function (topic) {
-        console.log(topic.data.topics)
+        //console.log(topic.data.topics)
         topic.data.topics.forEach(item => {
             const tab = document.createElement("div")
             tab.className = "tab"

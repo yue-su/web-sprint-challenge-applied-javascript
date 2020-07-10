@@ -20,3 +20,55 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
+
+const { default: Axios } = require("axios")
+
+
+function cardMaker(articleObj) {
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const author = document.createElement('div')
+    const imgContainer = document.createElement('div')
+    const image = document.createElement('img')
+    const name = document.createElement('span')
+
+    card.className = 'card'
+    headline.className = 'headline'
+    author.className = 'author'
+    imgContainer.className = 'img-container'
+    
+    headline.textContent = `${articleObj.headline}`
+    image.setAttribute('src', `${articleObj.authorPhoto}`)
+    name.textContent = `${articleObj.authorName}`
+
+    card.appendChild(headline)
+    card.appendChild(author)
+    author.appendChild(imgContainer)
+    author.appendChild(name)
+    imgContainer.appendChild(image)
+
+    card.addEventListener('click', ()=>console.log(articleObj.headline))
+
+    return card
+}
+
+const articlesURL = "https://lambda-times-backend.herokuapp.com/articles"
+
+const cards = document.querySelector(".cards-container")
+
+Axios.get(articlesURL)
+    .then(function (article) {
+        //console.log(article.data.articles.javascript)
+        article.data.articles.javascript.forEach(element => {cards.appendChild(cardMaker(element))});
+        article.data.articles.bootstrap.forEach(element => {cards.appendChild(cardMaker(element))});
+        article.data.articles.technology.forEach(element => {cards.appendChild(cardMaker(element))});
+        article.data.articles.jquery.forEach(element => {cards.appendChild(cardMaker(element))});
+        article.data.articles.node.forEach(element => { cards.appendChild(cardMaker(element)) });
+        
+        // const card = document.querySelectorAll('.card')
+        // card.forEach(item => item.addEventListener('click', () => {
+        //     console.log(item.childNodes[0].textContent)
+        // }))
+    })
+    
+.catch(function(error){console.log(error)})
